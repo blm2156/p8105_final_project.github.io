@@ -9,3 +9,4 @@ output:
 
 # This is our final project
 
+Welcome to our website. We used the NYC dogs database for our final project. We wanted to understand dog breeds across the 5 boroughs of NYC: Manhattan, Queens, The Bronx, Brooklyn, and Staten Island. 
