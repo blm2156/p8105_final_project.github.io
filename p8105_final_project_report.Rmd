@@ -9,8 +9,6 @@ output:
     theme: journal
 ---
 
-![](home_dogs.JPG)
-
 # Motivation
 
 ## Goals of our project
