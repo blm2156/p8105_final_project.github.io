@@ -1,5 +1,5 @@
 ---
-title: "My awesome website"
+title: "Data Sci Doggos"
 output: 
   html_document:
     toc: true
@@ -7,6 +7,18 @@ output:
     theme: cerulean
 ---
 
-# This is our final project
+# Motivation
 
 Welcome to our website. We used the NYC dogs database for our final project. We wanted to understand dog breeds across the 5 boroughs of NYC: Manhattan, Queens, The Bronx, Brooklyn, and Staten Island. 
+
+# Related Work 
+
+# Initial questions
+
+# Data
+
+# Exploratory Analysis
+
+# Additional Analysis
+
+# Discussion
