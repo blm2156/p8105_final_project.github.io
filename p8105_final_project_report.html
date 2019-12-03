@@ -563,9 +563,9 @@ distinct_dogz %&gt;%
   group_by(animal_name) %&gt;% 
   summarize(n_obs = n()) %&gt;% 
   arrange(desc(n_obs)) %&gt;% 
-  top_n(10)</code></pre>
-<pre><code>## Selecting by n_obs</code></pre>
-<pre class="r"><code>knitr::kable(top_dogz)</code></pre>
+  top_n(10)
+
+knitr::kable(top_dogz)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -628,20 +628,102 @@ distinct_dogz %&gt;%
     ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point() + geom_line() +
   labs(title = &quot;Top name by birth year&quot;, 
     x = &quot;Birth year&quot;, 
-    y = &quot;Number of dogs&quot;)</code></pre>
-<pre><code>## Selecting by n_obs</code></pre>
-<pre class="r"><code>plot_6</code></pre>
+    y = &quot;Number of dogs&quot;)
+plot_6</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="map" class="section level3">
 <h3>Map</h3>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 </div>
 <div id="findings" class="section level1">
 <h1>Findings</h1>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="additional-analysis" class="section level1">
 <h1>Additional Analysis</h1>
+<pre class="r"><code>#create reference groups that are coded as 
+distinct_dogz_reg = 
+  distinct_dogz %&gt;% 
+  mutate(
+    borough = fct_infreq(borough),
+    animal_gender = fct_infreq(animal_gender),
+    breed_name = fct_infreq(breed_name)
+    )
+#run linear regression with dog age as Y and borough, breed name and animal gender as categorical
+fit = lm(dog_age ~ borough + animal_gender, data = distinct_dogz)
+
+#view outputs
+fit %&gt;% 
+  broom::tidy()</code></pre>
+<pre><code>## # A tibble: 7 x 5
+##   term                 estimate std.error statistic   p.value
+##   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)           16.5       2.00        8.27 1.30e- 16
+## 2 boroughBrooklyn        0.0510    0.0457      1.11 2.65e-  1
+## 3 boroughManhattan       0.520     0.0439     11.8  2.82e- 32
+## 4 boroughQueens          0.473     0.0479      9.88 5.42e- 23
+## 5 boroughStaten Island   1.25      0.0588     21.2  9.03e-100
+## 6 animal_genderF        -9.72      2.00       -4.86 1.16e-  6
+## 7 animal_genderM        -9.89      2.00       -4.95 7.47e-  7</code></pre>
+<pre class="r"><code>#create tidy table
+fit %&gt;% 
+  broom::tidy() %&gt;% 
+  select(term, estimate, p.value) %&gt;% 
+  knitr::kable(digits = 3)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">16.541</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">boroughBrooklyn</td>
+<td align="right">0.051</td>
+<td align="right">0.265</td>
+</tr>
+<tr class="odd">
+<td align="left">boroughManhattan</td>
+<td align="right">0.520</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">boroughQueens</td>
+<td align="right">0.473</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">boroughStaten Island</td>
+<td align="right">1.247</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="left">animal_genderF</td>
+<td align="right">-9.717</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="odd">
+<td align="left">animal_genderM</td>
+<td align="right">-9.892</td>
+<td align="right">0.000</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>#graph residuals for each borough
+distinct_dogz_reg %&gt;% 
+  modelr::add_residuals(fit) %&gt;% 
+  ggplot(aes(x = borough, y = resid)) + geom_violin()</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="discussion" class="section level1">
 <h1>Discussion</h1>

@@ -213,7 +213,7 @@ plot_5.51
 
 ### Most popular dog name by birth year 
 
-```{r}
+```{r, message = FALSE}
 top_dogz =
 distinct_dogz %>% 
   filter(animal_name != "Unknown",
@@ -244,7 +244,45 @@ plot_6
 
 ### Map
 
+$~$
 
 # Findings
-# Additional Analysis
-# Discussion 
+
+$~$
+
+# Additional Analysis 
+
+```{r, message = FALSE, warning = FALSE}
+
+#create reference groups that are coded as 
+distinct_dogz_reg = 
+  distinct_dogz %>% 
+  mutate(
+    borough = fct_infreq(borough),
+    animal_gender = fct_infreq(animal_gender),
+    breed_name = fct_infreq(breed_name)
+    )
+#run linear regression with dog age as Y and borough, breed name and animal gender as categorical
+fit = lm(dog_age ~ borough + animal_gender, data = distinct_dogz)
+
+#view outputs
+fit %>% 
+  broom::tidy()
+
+#create tidy table
+fit %>% 
+  broom::tidy() %>% 
+  select(term, estimate, p.value) %>% 
+  knitr::kable(digits = 3)
+```
+
+```{r}
+#graph residuals for each borough
+distinct_dogz_reg %>% 
+  modelr::add_residuals(fit) %>% 
+  ggplot(aes(x = borough, y = resid)) + geom_violin()
+```
+
+$~$
+
+# Discussion
