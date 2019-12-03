@@ -26,6 +26,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
@@ -250,6 +251,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -359,6 +363,14 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Project Report: Data Sci Doggos</h1>
@@ -368,6 +380,11 @@ div.tocify {
 </div>
 
 
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+library(viridis)
+library(leaflet)</code></pre>
 <div id="motivation" class="section level1">
 <h1>Motivation</h1>
 <div id="goals-of-our-project" class="section level2">
@@ -385,6 +402,59 @@ div.tocify {
 </div>
 <div id="exploratory-analysis" class="section level1">
 <h1>Exploratory Analysis</h1>
+<div id="loading-and-tidying-the-data" class="section level3">
+<h3>Loading and tidying the data</h3>
+<pre class="r"><code>lat_lon = read.csv(&quot;./data/lat-long.csv&quot;)
+
+dogz = read.csv(&quot;./data/NYC_Dog_Licensing_Dataset.csv&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  filter(breed_name != &quot;Unknown&quot;,
+         extract_year-animal_birth_month &lt; 20) %&gt;% 
+  mutate(animal_name = str_to_sentence(animal_name),
+         borough = ifelse(zip_code %in% c(10001:10282),&quot;Manhattan&quot;, borough),
+         borough = ifelse(zip_code %in% c(10301:10314), &quot;Staten Island&quot;, borough),
+         borough = ifelse(zip_code %in% c(10451:10475), &quot;Bronx&quot;, borough),
+         borough = ifelse(zip_code %in% c(11004,11101:11106,11109,11351,11354:11375,11377:11379,11385,11411:11423,11426:11430,11432:11436,11691:11694,11697), &quot;Queens&quot;, borough),
+         borough = ifelse(zip_code %in% c(11201,11203:11226,11228:11239,11241:11243,11249,11252,11256), &quot;Brooklyn&quot;, borough),
+         borough = as.factor(borough),
+         breed_name = as.character(breed_name),
+         license_issued_date = as.Date(license_issued_date, format = &quot;%m/%d/%Y&quot;),
+         license_expired_date = as.Date(license_expired_date, format = &quot;%m/%d/%Y&quot;),
+         license_length = year(license_expired_date) - year(license_issued_date),
+         dog_age = 2019 - animal_birth_month,
+         breed_name = ifelse(breed_name == &quot;American Pit Bull Terrier/Pit Bull&quot;, &quot;American Pit Bull Mix / Pit Bull Mix&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;American Pit Bull Terrier/Pit Bull&quot;, &quot;American Pit Bull Mix / Pit Bull Mix&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Australian Cattle Dog&quot;, &quot;Australian Cattledog&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Bassett Hound&quot;, &quot;Basset Hound&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Brittany&quot;, &quot;Brittany Spaniel&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Coonhound, Black and Tan&quot;, &quot;Black and Tan Coonhound&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Coonhound, Black and Tan&quot;, &quot;Black and Tan Coonhound&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Coonhound, Blue Tick&quot;, &quot;Bluetick Coonhound&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Coonhound, Treeing Walker&quot;, &quot;Treeing Walker Coonhound&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Cotton de Tulear&quot;, &quot;Coton de Tulear&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Japanese Chin/Spaniel&quot;, &quot;Japanese Chin&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Jindo Dog, Korea&quot;, &quot;Jindo&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Mastiff, French (Dogue de Bordeaux)&quot;, &quot;Dogue de Bordeaux&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Pharoh hound&quot;, &quot;Pharaoh Hound&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Schipperke&quot;, &quot;Schipperkee&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Schnauzer, Miniature&quot;, &quot;Miniature Schnauzer&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Schnauzer, Miniature Crossbreed&quot;, &quot;Miniature Schnauzer, Crossbreed&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Welsh Corgi, Cardigan&quot;, &quot;Cardigan Welsh Corgi&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Welsh Corgi, Pembroke&quot;, &quot;Pembroke Welsh Corgi&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Bull Dog, French&quot;, &quot;French Bulldog&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Collie, Bearded&quot;, &quot;Bearded Collie&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Bullmastiff&quot;, &quot;Mastiff, Bull&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Neapolitan Mastiff&quot;, &quot;Mastiff, Neapolitan&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Tibetan Mastiff&quot;, &quot;Mastiff, Tibetan&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Pointer, German Shorthaired&quot;, &quot;German Shorthaired Pointer&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Pointer, German Wirehaired&quot;, &quot;German Wirehaired Pointer&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Schnauzer, Giant&quot;, &quot;Giant Schnauzer&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Schnauzer, Standard&quot;, &quot;Standard Schnauzer&quot;, breed_name),
+         breed_name = ifelse(breed_name == &quot;Chinese Shar-Pei&quot;, &quot;Shar-Pei, Chinese&quot;, breed_name)) %&gt;% 
+  drop_na(borough) %&gt;% 
+  rename(animal_birth_year = animal_birth_month, license_id = row_number) %&gt;% 
+  select(-extract_year)</code></pre>
+</div>
 </div>
 <div id="findings" class="section level1">
 <h1>Findings</h1>
@@ -431,6 +501,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
