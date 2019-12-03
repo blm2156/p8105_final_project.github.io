@@ -1,0 +1,10 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "Final Project"
+      href: p8105_final_project_report.html
+output:
+  html_document:
+    theme: cerulean
