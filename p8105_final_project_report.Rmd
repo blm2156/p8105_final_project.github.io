@@ -280,7 +280,7 @@ fit %>%
 #graph residuals for each borough
 distinct_dogz_reg %>% 
   modelr::add_residuals(fit) %>% 
-  ggplot(aes(x = borough, y = resid)) + geom_violin()
+  ggplot(aes(x = borough, y = resid)) + geom_violin(fill = "pink")
 ```
 
 $~$

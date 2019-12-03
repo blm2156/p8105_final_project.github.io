@@ -721,7 +721,7 @@ fit %&gt;%
 <pre class="r"><code>#graph residuals for each borough
 distinct_dogz_reg %&gt;% 
   modelr::add_residuals(fit) %&gt;% 
-  ggplot(aes(x = borough, y = resid)) + geom_violin()</code></pre>
+  ggplot(aes(x = borough, y = resid)) + geom_violin(fill = &quot;pink&quot;)</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
