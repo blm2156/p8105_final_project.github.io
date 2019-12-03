@@ -9,16 +9,30 @@ output:
 
 # Motivation
 
+**Provide an overview of the project goals and motivation** 
 Welcome to our website. We used the NYC dogs database for our final project. We wanted to understand dog breeds across the 5 boroughs of NYC: Manhattan, Queens, The Bronx, Brooklyn, and Staten Island. 
 
 # Related Work 
 
+**Anything that inspired you, such as a paper, a web site, or something we discussed in class.**
+
+
 # Initial questions
+
+**What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?**
 
 # Data
 
+**Source, scraping method, cleaning, etc.**
+
 # Exploratory Analysis
+
+**Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.**
 
 # Additional Analysis
 
+**If you undertake formal statistical analyses, describe these in detail**
+
 # Discussion
+
+**What were your findings? Are they what you expect? What insights into the data can you make?**
