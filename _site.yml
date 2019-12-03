@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "Final Project"
       href: p8105_final_project_report.html
+    - text: "Adopt a Dog in NYC"
+      href: https://rescuedogsrocknyc.org/
 output:
   html_document:
     theme: journal

@@ -1,16 +1,28 @@
 ---
 title: "Data Sci Doggos"
+author: "Naina Ahuja, Mary Knoop, Sam Loewen, Uma Palaniappan, Britney Mazzetta"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: journal
 ---
+
+![](home_dogs.JPG)
+
+$~$ 
+
 # Introduction
 
 Welcome to our website. We used the NYC dogs database for our final project. We wanted to understand dog breeds across the 5 boroughs of NYC: Manhattan, Queens, The Bronx, Brooklyn, and Staten Island. 
 
+$~$
+
 # Dataset
+
+We utilized the NYC Dog Licensing dataset. All dog owners who reside in NYC are required by law to license their dogs. This is a publicly available dataset sourced from the Department of Health and Mental Hygiene (DOHMH) Dog Licensing System where owners are able to apply for and renew dog licenses. This dataset was created on September 19, 2017 and was last updated on July 25, 2019. There are 10 variables in this dataset with a raw number of 346,000 observations. 
+
+$~$
 
 # Findings
 

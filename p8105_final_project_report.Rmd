@@ -1,8 +1,30 @@
 ---
-title: "Project Report"
+title: "Project Report: Data Sci Doggos"
+author: "Naina Ahuja, Mary Knoop, Sam Loewen, Uma Palaniappan, Britney Mazzetta"
+date: "December 5, 2019"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: journal
 ---
+
+![](home_dogs.JPG)
+
+# Motivation
+
+## Goals of our project
+
+# Related Work
+
+# Initial Questions
+
+# Data
+
+# Exploratory Analysis
+
+# Findings
+
+# Additional Analysis
+
+# Discussion 
