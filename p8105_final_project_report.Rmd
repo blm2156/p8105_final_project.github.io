@@ -18,19 +18,42 @@ library(viridis)
 library(leaflet)
 ```
 
+$~$
+
 # Motivation
+
+
+$~$
 
 ## Goals of our project
 
+
+$~$
+
 # Related Work
+
+
+$~$
 
 # Initial Questions
 
+
+$~$
+
 # Data
+
+
+$~$
 
 # Exploratory Analysis
 
+$~$
+
 ### Loading and tidying the data
+
+Talk about data cleaning process and what we did
+
+$~$
 
 ```{r load, cache = TRUE, warning = FALSE, message = FALSE}
 lat_lon = read.csv("./data/lat-long.csv")
@@ -85,9 +108,143 @@ dogz = read.csv("./data/NYC_Dog_Licensing_Dataset.csv") %>%
   select(-extract_year)
 ```
 
+Talk about the 2 distinctions between the datasets below
+
+```{r}
+dogz_1 =
+  dogz %>% 
+  distinct(animal_name, animal_gender, animal_birth_year, breed_name, .keep_all = TRUE) %>% 
+  select (-license_issued_date, -license_expired_date, -license_length)
+
+distinct_dogz =
+  left_join(dogz_1, lat_lon, by = "zip_code") %>% 
+  select(-City,-State,-Timezone,-Daylight.savings.time.flag,-geopoint) %>% 
+  janitor::clean_names()
+```
+
+### Gender of dogs by borough
+
+```{r, warning = FALSE}
+plot_2=
+  distinct_dogz %>% 
+  filter(animal_gender == "M" | animal_gender == "F") %>% 
+  ggplot(aes(x = borough, fill = animal_gender)) +
+  geom_histogram(position = "dodge", stat = "count") +
+  labs(
+    title = "Gender of dogs by borough",
+    x = "New York Borough",
+    y = "Dog Gender"
+  )
+
+plot_2
+```
+
+
+### Age Distribution of Dogs by Boroughs 
+
+```{r}
+plot_3=
+  ggplot(distinct_dogz, aes(x = borough, y = dog_age)) +
+  geom_boxplot (color = "purple") +
+  labs(
+    title = "Age distribution of dogs by borough",
+    x = "New York Borough",
+    y = "Dog's Age"
+  )
+plot_3
+```
+
+### Top Breed of dogs by Borough 
+
+```{r, message = FALSE}
+plot_4=
+  distinct_dogz %>% 
+  group_by(borough) %>% 
+  count(breed_name) %>% 
+  top_n(5) %>% 
+  ggplot(aes(x = breed_name, y = n)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  facet_grid(~borough) +
+  labs(
+    title = "Top 10 breeds of dogs by borough",
+    x = "Dog Breed",
+    y = "Total Count"
+  )
+plot_4
+```
+
+
+### Number of licenses over time (license issue date vs. number of licenses) 
+
+```{r}
+plot_5.5=
+  dogz %>% 
+  mutate(license_issued_date = floor_date(as_date(license_issued_date), "month")) %>% 
+  group_by(license_issued_date) %>% 
+  summarize(n_obs = n()) %>% 
+      ggplot(aes(x = license_issued_date, y = n_obs, color = n_obs)) + 
+      geom_point() + geom_line() +
+      labs(title = "Number of licenses over time", 
+      x = "License issue date", 
+      y = "Number of licenses")
+plot_5.5
+```
+
+
+### Number of licenses issued per month (liscence issue date vs. number of liscences) 
+
+```{r}
+plot_5.51=
+  dogz %>% 
+  mutate(license_issued_date = month(license_issued_date),
+         license_issued_date = month.abb[license_issued_date],
+         license_issued_date = factor(license_issued_date, c("Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct","Nov", "Dec"), ordered = TRUE)) %>%
+  group_by(license_issued_date) %>% 
+  summarize(n_obs = n()) %>% 
+      ggplot(aes(x = license_issued_date, y = n_obs)) + 
+      geom_point() + geom_line(group=1) +
+      labs(title = "Number of licenses issued per month", 
+      x = "License issue date", 
+      y = "Number of licenses")
+plot_5.51
+```
+
+
+### Most popular dog name by birth year 
+
+```{r}
+top_dogz =
+distinct_dogz %>% 
+  filter(animal_name != "Unknown",
+         animal_name != "Name not provided") %>% 
+  group_by(animal_name) %>% 
+  summarize(n_obs = n()) %>% 
+  arrange(desc(n_obs)) %>% 
+  top_n(10)
+
+knitr::kable(top_dogz)
+
+plot_6 = 
+distinct_dogz %>% 
+  filter(animal_name != "Unknown",
+         animal_name != "Name not provided",
+         animal_name != "Name",
+         animal_birth_year != 1997) %>% 
+  group_by(animal_birth_year, animal_name) %>% 
+  summarize(n_obs = n()) %>% 
+  top_n(1) %>% 
+    ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point() + geom_line() +
+  labs(title = "Top name by birth year", 
+    x = "Birth year", 
+    y = "Number of dogs")
+plot_6
+
+```
+
+### Map
+
 
 # Findings
-
 # Additional Analysis
-
 # Discussion 

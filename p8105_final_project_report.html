@@ -385,25 +385,34 @@ library(tidyverse)
 library(lubridate)
 library(viridis)
 library(leaflet)</code></pre>
+<p><span class="math inline">\(~\)</span></p>
 <div id="motivation" class="section level1">
 <h1>Motivation</h1>
+<p><span class="math inline">\(~\)</span></p>
 <div id="goals-of-our-project" class="section level2">
 <h2>Goals of our project</h2>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 </div>
 <div id="related-work" class="section level1">
 <h1>Related Work</h1>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="initial-questions" class="section level1">
 <h1>Initial Questions</h1>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="exploratory-analysis" class="section level1">
 <h1>Exploratory Analysis</h1>
+<p><span class="math inline">\(~\)</span></p>
 <div id="loading-and-tidying-the-data" class="section level3">
 <h3>Loading and tidying the data</h3>
+<p>Talk about data cleaning process and what we did</p>
+<p><span class="math inline">\(~\)</span></p>
 <pre class="r"><code>lat_lon = read.csv(&quot;./data/lat-long.csv&quot;)
 
 dogz = read.csv(&quot;./data/NYC_Dog_Licensing_Dataset.csv&quot;) %&gt;% 
@@ -454,6 +463,178 @@ dogz = read.csv(&quot;./data/NYC_Dog_Licensing_Dataset.csv&quot;) %&gt;%
   drop_na(borough) %&gt;% 
   rename(animal_birth_year = animal_birth_month, license_id = row_number) %&gt;% 
   select(-extract_year)</code></pre>
+<p>Talk about the 2 distinctions between the datasets below</p>
+<pre class="r"><code>dogz_1 =
+  dogz %&gt;% 
+  distinct(animal_name, animal_gender, animal_birth_year, breed_name, .keep_all = TRUE) %&gt;% 
+  select (-license_issued_date, -license_expired_date, -license_length)
+
+distinct_dogz =
+  left_join(dogz_1, lat_lon, by = &quot;zip_code&quot;) %&gt;% 
+  select(-City,-State,-Timezone,-Daylight.savings.time.flag,-geopoint) %&gt;% 
+  janitor::clean_names()</code></pre>
+</div>
+<div id="gender-of-dogs-by-borough" class="section level3">
+<h3>Gender of dogs by borough</h3>
+<pre class="r"><code>plot_2=
+  distinct_dogz %&gt;% 
+  filter(animal_gender == &quot;M&quot; | animal_gender == &quot;F&quot;) %&gt;% 
+  ggplot(aes(x = borough, fill = animal_gender)) +
+  geom_histogram(position = &quot;dodge&quot;, stat = &quot;count&quot;) +
+  labs(
+    title = &quot;Gender of dogs by borough&quot;,
+    x = &quot;New York Borough&quot;,
+    y = &quot;Dog Gender&quot;
+  )
+
+plot_2</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="age-distribution-of-dogs-by-boroughs" class="section level3">
+<h3>Age Distribution of Dogs by Boroughs</h3>
+<pre class="r"><code>plot_3=
+  ggplot(distinct_dogz, aes(x = borough, y = dog_age)) +
+  geom_boxplot (color = &quot;purple&quot;) +
+  labs(
+    title = &quot;Age distribution of dogs by borough&quot;,
+    x = &quot;New York Borough&quot;,
+    y = &quot;Dog&#39;s Age&quot;
+  )
+plot_3</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="top-breed-of-dogs-by-borough" class="section level3">
+<h3>Top Breed of dogs by Borough</h3>
+<pre class="r"><code>plot_4=
+  distinct_dogz %&gt;% 
+  group_by(borough) %&gt;% 
+  count(breed_name) %&gt;% 
+  top_n(5) %&gt;% 
+  ggplot(aes(x = breed_name, y = n)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  facet_grid(~borough) +
+  labs(
+    title = &quot;Top 10 breeds of dogs by borough&quot;,
+    x = &quot;Dog Breed&quot;,
+    y = &quot;Total Count&quot;
+  )
+plot_4</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="number-of-licenses-over-time-license-issue-date-vs.number-of-licenses" class="section level3">
+<h3>Number of licenses over time (license issue date vs. number of licenses)</h3>
+<pre class="r"><code>plot_5.5=
+  dogz %&gt;% 
+  mutate(license_issued_date = floor_date(as_date(license_issued_date), &quot;month&quot;)) %&gt;% 
+  group_by(license_issued_date) %&gt;% 
+  summarize(n_obs = n()) %&gt;% 
+      ggplot(aes(x = license_issued_date, y = n_obs, color = n_obs)) + 
+      geom_point() + geom_line() +
+      labs(title = &quot;Number of licenses over time&quot;, 
+      x = &quot;License issue date&quot;, 
+      y = &quot;Number of licenses&quot;)
+plot_5.5</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="number-of-licenses-issued-per-month-liscence-issue-date-vs.number-of-liscences" class="section level3">
+<h3>Number of licenses issued per month (liscence issue date vs. number of liscences)</h3>
+<pre class="r"><code>plot_5.51=
+  dogz %&gt;% 
+  mutate(license_issued_date = month(license_issued_date),
+         license_issued_date = month.abb[license_issued_date],
+         license_issued_date = factor(license_issued_date, c(&quot;Jan&quot;,&quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;,&quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;,&quot;Nov&quot;, &quot;Dec&quot;), ordered = TRUE)) %&gt;%
+  group_by(license_issued_date) %&gt;% 
+  summarize(n_obs = n()) %&gt;% 
+      ggplot(aes(x = license_issued_date, y = n_obs)) + 
+      geom_point() + geom_line(group=1) +
+      labs(title = &quot;Number of licenses issued per month&quot;, 
+      x = &quot;License issue date&quot;, 
+      y = &quot;Number of licenses&quot;)
+plot_5.51</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="most-popular-dog-name-by-birth-year" class="section level3">
+<h3>Most popular dog name by birth year</h3>
+<pre class="r"><code>top_dogz =
+distinct_dogz %&gt;% 
+  filter(animal_name != &quot;Unknown&quot;,
+         animal_name != &quot;Name not provided&quot;) %&gt;% 
+  group_by(animal_name) %&gt;% 
+  summarize(n_obs = n()) %&gt;% 
+  arrange(desc(n_obs)) %&gt;% 
+  top_n(10)</code></pre>
+<pre><code>## Selecting by n_obs</code></pre>
+<pre class="r"><code>knitr::kable(top_dogz)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">animal_name</th>
+<th align="right">n_obs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Max</td>
+<td align="right">720</td>
+</tr>
+<tr class="even">
+<td align="left">Charlie</td>
+<td align="right">696</td>
+</tr>
+<tr class="odd">
+<td align="left">Bella</td>
+<td align="right">667</td>
+</tr>
+<tr class="even">
+<td align="left">Coco</td>
+<td align="right">633</td>
+</tr>
+<tr class="odd">
+<td align="left">Lucy</td>
+<td align="right">568</td>
+</tr>
+<tr class="even">
+<td align="left">Lola</td>
+<td align="right">539</td>
+</tr>
+<tr class="odd">
+<td align="left">Rocky</td>
+<td align="right">535</td>
+</tr>
+<tr class="even">
+<td align="left">Bailey</td>
+<td align="right">529</td>
+</tr>
+<tr class="odd">
+<td align="left">Buddy</td>
+<td align="right">503</td>
+</tr>
+<tr class="even">
+<td align="left">Lucky</td>
+<td align="right">497</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot_6 = 
+distinct_dogz %&gt;% 
+  filter(animal_name != &quot;Unknown&quot;,
+         animal_name != &quot;Name not provided&quot;,
+         animal_name != &quot;Name&quot;,
+         animal_birth_year != 1997) %&gt;% 
+  group_by(animal_birth_year, animal_name) %&gt;% 
+  summarize(n_obs = n()) %&gt;% 
+  top_n(1) %&gt;% 
+    ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point() + geom_line() +
+  labs(title = &quot;Top name by birth year&quot;, 
+    x = &quot;Birth year&quot;, 
+    y = &quot;Number of dogs&quot;)</code></pre>
+<pre><code>## Selecting by n_obs</code></pre>
+<pre class="r"><code>plot_6</code></pre>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="map" class="section level3">
+<h3>Map</h3>
 </div>
 </div>
 <div id="findings" class="section level1">
