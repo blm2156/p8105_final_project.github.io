@@ -11,3 +11,6 @@ Encoding: UTF-8
 
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
+
+BuildType: Website
+WebsitePath: ~/Documents/Columbia Univeristy/3. Fall 2019/Data Science/final project/p8105_final_project.github.io
