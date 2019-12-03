@@ -29,6 +29,16 @@ $~$
 
 # Website Overview
 
+Analysis: Current Patterns and Trends  associated with Licensed Dogs in across the five boroughs of New York City (2017-2019)
+
+**NOTE: LINK TO FINAL PROJECT**
+
 $~$ 
+
+# Screencast
+
+For a brief overview of our website, view our screencast:
+
+$~$
 
 ## Contributors: Naina Ahuja, Mary Knoop, Sam Loewen, Uma Palaniappan, Britney Mazzetta
