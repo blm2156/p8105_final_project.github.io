@@ -1,6 +1,5 @@
 ---
 title: "Data Sci Doggos"
-author: "Naina Ahuja, Mary Knoop, Sam Loewen, Uma Palaniappan, Britney Mazzetta"
 output: 
   html_document:
     toc: true
@@ -26,8 +25,10 @@ $~$
 
 # Findings
 
+$~$ 
+
 # Website Overview
 
-# Things you can do!
+$~$ 
 
-Add website for adopting a dog in NYC
+## Contributors: Naina Ahuja, Mary Knoop, Sam Loewen, Uma Palaniappan, Britney Mazzetta
