@@ -176,7 +176,9 @@ plot_2
 
 ```{r}
 plot_3=
-  ggplot(distinct_dogz, aes(x = borough, y = dog_age)) +
+  distinct_dogz %>% 
+  filter(dog_age < 20) %>% 
+  ggplot(aes(x = borough, y = dog_age)) +
   geom_boxplot (color = "purple") +
   labs(
     title = "Age distribution of dogs by borough",
