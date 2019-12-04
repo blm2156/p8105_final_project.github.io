@@ -441,7 +441,8 @@ library(leaflet)</code></pre>
 <p><span class="math inline">\(~\)</span></p>
 <div id="loading-and-tidying-the-data" class="section level3">
 <h3>Loading and tidying the data</h3>
-<p>Talk about data cleaning process and what we did</p>
+<p>The dataset was cleaned and adjusted for this analysis. All dogs whose breed were listed as “unknown” were removed, as well as any dogs who were listed as over 20 years old at the time of thier license. Originally there were no boroughs listed in this dataset, so we used the available zip codes to assign boroughs to each record. Records whose zip code did not correlate to a borough were dropped. A variable <code>license_length</code> was added to calculate the lenght in years of each license. There were slight differences in the way breed names were recorded, these were adjusted to be uniform.</p>
+<p>Variables were changed to appropriate data type where neccessary.</p>
 <p><span class="math inline">\(~\)</span></p>
 <pre class="r"><code>lat_lon = read.csv(&quot;./data/lat-long.csv&quot;)
 
@@ -493,7 +494,7 @@ dogz = read.csv(&quot;./data/NYC_Dog_Licensing_Dataset.csv&quot;) %&gt;%
   drop_na(borough) %&gt;% 
   rename(animal_birth_year = animal_birth_month, license_id = row_number) %&gt;% 
   select(-extract_year)</code></pre>
-<p>Talk about the 2 distinctions between the datasets below</p>
+<p>The main database included the same dog multiple times if she had more than one license. We created a subset to catalog only the distinct dogs present in our dataset. To identify individual dogs we matched records on animal name, gender, birth year, and breed name. We also added latitude and longitude data that corresponds to zip code for mapping purposes.</p>
 <pre class="r"><code>dogz_1 =
   dogz %&gt;% 
   distinct(animal_name, animal_gender, animal_birth_year, breed_name, .keep_all = TRUE) %&gt;% 
@@ -552,7 +553,7 @@ plot_3</code></pre>
 plot_4</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-<div id="number-of-licenses-over-time-license-issue-date-vs.number-of-licenses" class="section level3">
+<div id="number-of-licenses-over-time-license-issue-date-vs.-number-of-licenses" class="section level3">
 <h3>Number of licenses over time (license issue date vs. number of licenses)</h3>
 <pre class="r"><code>plot_5.5=
   dogz %&gt;% 
@@ -567,7 +568,7 @@ plot_4</code></pre>
 plot_5.5</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-<div id="number-of-licenses-issued-per-month-liscence-issue-date-vs.number-of-liscences" class="section level3">
+<div id="number-of-licenses-issued-per-month-liscence-issue-date-vs.-number-of-liscences" class="section level3">
 <h3>Number of licenses issued per month (liscence issue date vs. number of liscences)</h3>
 <pre class="r"><code>plot_5.51=
   dogz %&gt;% 

@@ -81,7 +81,9 @@ $~$
 
 ### Loading and tidying the data
 
-Talk about data cleaning process and what we did
+The dataset was cleaned and adjusted for this analysis. All dogs whose breed were listed as "unknown" were removed, as well as any dogs who were listed as over 20 years old at the time of thier license. Originally there were no boroughs listed in this dataset, so we used the available zip codes to assign boroughs to each record. Records whose zip code did not correlate to a borough were dropped. A variable `license_length` was added to calculate the lenght in years of each license. There were slight differences in the way breed names were recorded, these were adjusted to be uniform.
+
+Variables were changed to appropriate data type where neccessary.
 
 $~$
 
@@ -138,7 +140,7 @@ dogz = read.csv("./data/NYC_Dog_Licensing_Dataset.csv") %>%
   select(-extract_year)
 ```
 
-Talk about the 2 distinctions between the datasets below
+The main database included the same dog multiple times if she had more than one license. We created a subset to catalog only the distinct dogs present in our dataset. To identify individual dogs we matched records on animal name, gender, birth year, and breed name. We also added latitude and longitude data that corresponds to zip code for mapping purposes.
 
 ```{r}
 dogz_1 =
