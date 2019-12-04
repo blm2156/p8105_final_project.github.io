@@ -201,7 +201,7 @@ distinct_dogz %>%
   ggplot(aes(x = breed_name, y = n)) +
   geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  facet_grid(~borough) +
+  facet_grid(~borough, scales = "free", space = "free") +
   labs(
     title = "Top 5 breeds of dogs by borough",
     x = "Dog Breed",
