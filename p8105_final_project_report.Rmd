@@ -187,8 +187,14 @@ plot_3
 ### Top Breed of dogs by Borough 
 
 ```{r, message = FALSE}
+
+distinct_dogz %>% 
+  group_by(borough) %>% 
+  count(breed_name) %>% 
+  top_n(5)
+
 plot_4=
-  distinct_dogz %>% 
+distinct_dogz %>% 
   group_by(borough) %>% 
   count(breed_name) %>% 
   top_n(5) %>% 
@@ -197,7 +203,7 @@ plot_4=
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   facet_grid(~borough) +
   labs(
-    title = "Top 10 breeds of dogs by borough",
+    title = "Top 5 breeds of dogs by borough",
     x = "Dog Breed",
     y = "Total Count"
   )
