@@ -192,7 +192,11 @@ knitr::kable(table2)
 
 In this table, we see the top 3 dog breeds for each age, dog ages 1 - 22. We can see that there are more larger dog breeds appearing as the top breed in some of the younger age categories. After 9 years, all of the top 3 dog breeds for each age consist of small dog breeds. This is consistent with literature findings that smaller dog breeds tend to live longer lives than larger dog breeds. In addition, we find that several dog breeds outshine others in being the top dog breed for many of the age categories including Chihuanhua, Yorkshire Terrier, and American Pit Bull Mix / Pit Bull Mix.
 
+$~$
+
+
 ### Top Breed of Dogs by Borough 
+
 ```{r, message = FALSE}
 plot_4=
 distinct_dogz %>% 
