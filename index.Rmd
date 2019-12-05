@@ -31,7 +31,8 @@ $~$
 
 Analysis: Current Patterns and Trends  associated with Licensed Dogs in across the five boroughs of New York City (2017-2019)
 
-**NOTE: LINK TO FINAL PROJECT**
+[Link to Final Project Report](https://blm2156.github.io/p8105_final_project.github.io/p8105_final_project_report.html)
+
 
 $~$ 
 
