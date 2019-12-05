@@ -211,7 +211,7 @@ distinct_dogz %>%
 plot_4
 ```
 
-Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Labrador Retriever, Labrador Retriever Crossbreed, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua's, and Yorkshire Terriers have the highest observed frequency. 
+Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua's, and Yorkshire Terriers have the highest observed frequency. 
 $~$
 
 ### Number of licenses over time (license issue date vs. number of licenses) 
@@ -269,13 +269,13 @@ distinct_dogz %>%
 knitr::kable(top_dogz)
 ```
 
+In this table, we see the 10 most popular dog names among all of the data in this dataset. Max ranks in first place with 720 counts among the entire dataset. It is interesting to note that several of the dog names could be gender neutral among this top 10 list. 
+
 $~$
 
 ### Most popular dog name by birth year
 
 ```{r, message = FALSE}
-
-
 plot_6 = 
 distinct_dogz %>% 
   filter(animal_name != "Unknown",
@@ -292,6 +292,8 @@ distinct_dogz %>%
 plot_6
 
 ```
+
+Based on this line graph, we can see the number of dogs that had a particular name based on birth year from 2000 to 2015. Names like Coco, Max, and Bella had an increase between 2000 - 2010 while names like Charlie gained popularity starting around 2007 all the way until about 2016. Additionally, while names like Lucky and Lucy were popular, they spanned a short duration of about a year.  An interesting trend is that there has been a decrease in the popularity of the name Luna from 2016. 
 
 $~$
 
