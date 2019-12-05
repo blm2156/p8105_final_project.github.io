@@ -230,6 +230,8 @@ plot_5.5=
 plot_5.5
 ```
 
+Based on this line graph, license issue date by the number of licenses, the highest frequency of licences were issued between 2016 - 2018 while the fewest number of licenses were issued from 2015-2016. This could be due to the fact that the license data was captured from 2017 - 2019, but there was still data with earlier license dates captured. 
+
 $~$
 
 ### Number of licenses issued per month (liscence issue date vs. number of liscences) 
