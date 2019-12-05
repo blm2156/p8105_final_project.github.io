@@ -624,8 +624,8 @@ plot_5.51</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="most-popular-dog-name-by-birth-year" class="section level3">
-<h3>Most popular dog name by birth year</h3>
+<div id="most-popular-dog-name" class="section level3">
+<h3>Most popular dog name</h3>
 <pre class="r"><code>top_dogz =
 distinct_dogz %&gt;% 
   filter(animal_name != &quot;Unknown&quot;,
@@ -633,9 +633,9 @@ distinct_dogz %&gt;%
   group_by(animal_name) %&gt;% 
   summarize(n_obs = n()) %&gt;% 
   arrange(desc(n_obs)) %&gt;% 
-  top_n(10)
-
-knitr::kable(top_dogz)</code></pre>
+  top_n(10)</code></pre>
+<pre><code>## Selecting by n_obs</code></pre>
+<pre class="r"><code>knitr::kable(top_dogz)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -686,6 +686,10 @@ knitr::kable(top_dogz)</code></pre>
 </tr>
 </tbody>
 </table>
+<p><span class="math inline">\(~\)</span></p>
+</div>
+<div id="most-popular-dog-name-by-birth-year" class="section level3">
+<h3>Most popular dog name by birth year</h3>
 <pre class="r"><code>plot_6 = 
 distinct_dogz %&gt;% 
   filter(animal_name != &quot;Unknown&quot;,
@@ -696,11 +700,11 @@ distinct_dogz %&gt;%
   summarize(n_obs = n()) %&gt;% 
   top_n(1) %&gt;% 
     ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point() + geom_line() +
-  labs(title = &quot;Top name by birth year&quot;, 
+  labs(title = &quot;Most popular dog name by birth year&quot;, 
     x = &quot;Birth year&quot;, 
     y = &quot;Number of dogs&quot;)
 plot_6</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="map" class="section level3">
@@ -794,7 +798,7 @@ fit %&gt;%
 distinct_dogz_reg %&gt;% 
   modelr::add_residuals(fit) %&gt;% 
   ggplot(aes(x = borough, y = resid)) + geom_violin(fill = &quot;pink&quot;)</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="discussion" class="section level1">

@@ -254,9 +254,9 @@ plot_5.51
 
 $~$
 
-### Most popular dog name by birth year 
+### Most popular dog name
 
-```{r, message = FALSE}
+```{r}
 top_dogz =
 distinct_dogz %>% 
   filter(animal_name != "Unknown",
@@ -267,6 +267,14 @@ distinct_dogz %>%
   top_n(10)
 
 knitr::kable(top_dogz)
+```
+
+$~$
+
+### Most popular dog name by birth year
+
+```{r, message = FALSE}
+
 
 plot_6 = 
 distinct_dogz %>% 
@@ -278,7 +286,7 @@ distinct_dogz %>%
   summarize(n_obs = n()) %>% 
   top_n(1) %>% 
     ggplot(aes(x=animal_birth_year, y=n_obs, group = animal_name, color = animal_name)) + geom_point() + geom_line() +
-  labs(title = "Top name by birth year", 
+  labs(title = "Most popular dog name by birth year", 
     x = "Birth year", 
     y = "Number of dogs")
 plot_6
