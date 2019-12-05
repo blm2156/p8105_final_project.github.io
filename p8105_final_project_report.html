@@ -29,6 +29,8 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -355,6 +357,24 @@ div.tocify {
 </li>
 <li>
   <a href="https://rescuedogsrocknyc.org/">Adopt a Dog in NYC</a>
+</li>
+<li>
+  <a href="https://github.com/nja2140/p8105_final_project">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/blm2156/p8105_final_project.github.io">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="mailto:nja2140@cumc.columbia.edu">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -769,7 +789,7 @@ fit %&gt;%
 </tr>
 </tbody>
 </table>
-<p>In our linear model we predict our outcome of dog’s age given our main exposure of borough, adjusting for dog’s gender. Our beta values show that there is not much variance among dog age across different boroughs for both male and female dogs. Additionally, as seen in our residuals plot, our data does not likely contain outliers and appears to be normally distributed. One limitation to our model is the exclusion of breeds type as a variable in our model. There is a theory that small dogs tend to live longers lives, thus in an ideal model we would have controlled for dog breed by categorizing breed size as small, medium, large breed. Unfortunately, the large number of breed types included in our dataset impeded our ability to categorizing each breed, and without categorizing this variable our degrees of freedom would be far too high for our model to be parsimonious. For these reasons we chose to exclude this variable from our model.</p>
+<p>In our linear regression model we predict our outcome of dog’s age given our main exposure of borough, adjusting for dog’s gender. Our beta values show that there is not much variance among dog age across different boroughs for both male and female dogs. Additionally, as seen in our residuals plot, our data does not likely contain outliers and appears to be normally distributed. One limitation to our model is the exclusion of breeds type as a variable in our model. There is a theory that small dogs tend to live longers lives, thus in an ideal model we would have controlled for dog breed by categorizing breed size as small, medium, large breed. Unfortunately, the large number of breed types included in our dataset impeded our ability to categorizing each breed, and without categorizing this variable our degrees of freedom would be far too high for our model to be parsimonious. For these reasons we chose to exclude this variable from our model.</p>
 <pre class="r"><code>#graph residuals for each borough
 distinct_dogz_reg %&gt;% 
   modelr::add_residuals(fit) %&gt;% 
