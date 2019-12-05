@@ -23,7 +23,7 @@ $~$
 
 # Motivation
 
-The motivation of this project was to use the data, the New York City (NYC) Department of Health and Mental Hygience (DOHMH) Dog Licensing Dataset. This dataset spans the five boroughs of NYC and will help to deepen our understanding of the current patterns and trends among canines in NYC. 
+The motivation of this project was to use the data, the New York City (NYC) Department of Health and Mental Hygience (DOHMH) Dog Licensing Dataset. This dataset spans the five boroughs of NYC and will help to deepen our understanding of the current patterns and trends among canines in NYC.
 
 $~$
 
