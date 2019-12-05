@@ -319,8 +319,8 @@ distinct_dogz_reg =
 fit = lm(dog_age ~ borough + animal_gender, data = distinct_dogz)
 
 #view outputs
-fit %>% 
-  broom::tidy()
+#fit %>% 
+#  broom::tidy()
 
 #create tidy table
 fit %>% 
