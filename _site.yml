@@ -7,6 +7,12 @@ navbar:
       href: p8105_final_project_report.html
     - text: "Adopt a Dog in NYC"
       href: https://rescuedogsrocknyc.org/
+    - icon: fa-github fa-lg
+      href: https://github.com/nja2140/p8105_final_project
+    - icon: fa-github fa-lg
+      href: https://github.com/blm2156/p8105_final_project.github.io
+    - icon: fa-envelope fa-lg
+      href: mailto:nja2140@cumc.columbia.edu
 output:
   html_document:
     theme: journal
