@@ -16,6 +16,7 @@ library(tidyverse)
 library(lubridate)
 library(viridis)
 library(leaflet)
+lat_long = read.csv("./data/lat-long.csv")
 ```
 
 $~$
@@ -305,6 +306,20 @@ Based on this line graph, we can see the number of dogs that had a particular na
 $~$
 
 ### Map
+
+```{r}
+pal = colorNumeric(
+  palette = "viridis",
+  domain = distinct_dogz$zip_code)
+
+distinct_dogz %>% 
+  group_by(breed_name) %>% 
+  mutate(click_label = str_c("<b> year(s)", dog_age, "</b><br>", animal_birth_year, "born <br>", animal_gender, " gender")) %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(~longitude, ~latitude, radius = .1, color = ~pal(zip_code), popup = ~click_label)
+```
+
 
 $~$
 
