@@ -19,7 +19,7 @@ $~$
 
 # Dataset
 
-We utilized the NYC Dog Licensing dataset. All dog owners who reside in NYC are required by law to license their dogs. This is a publicly available dataset sourced from the Department of Health and Mental Hygiene (DOHMH) Dog Licensing System where owners are able to apply for and renew dog licenses. This dataset was created on September 19, 2017 and was last updated on July 25, 2019. There are 10 variables in this dataset with a raw number of 346,000 observations. 
+We utilized the NYC Dog Licensing dataset. All dog owners who reside in the five boroughs of New York City are required by law to license their dogs. Licenses can range from one to five years.  The dataset is publicly available and sourced from the Department of Health and Mental Hygiene (DOHMH) Dog Licensing System where owners are able to apply for and renew dog licenses. This dataset was created on September 19, 2017 and was last updated on July 25, 2019. There are 10 variables in this dataset with a raw number of 345,727 observations 
 
 $~$
 
