@@ -249,7 +249,7 @@ $~$
 
 ### Most popular dog name
 
-```{r}
+```{r, message = FALSE}
 top_dogz =
 distinct_dogz %>% 
   filter(animal_name != "Unknown",

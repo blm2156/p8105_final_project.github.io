@@ -629,9 +629,9 @@ distinct_dogz %&gt;%
   group_by(animal_name) %&gt;% 
   summarize(n_obs = n()) %&gt;% 
   arrange(desc(n_obs)) %&gt;% 
-  top_n(10)</code></pre>
-<pre><code>## Selecting by n_obs</code></pre>
-<pre class="r"><code>knitr::kable(top_dogz)</code></pre>
+  top_n(10)
+
+knitr::kable(top_dogz)</code></pre>
 <table>
 <thead>
 <tr class="header">
