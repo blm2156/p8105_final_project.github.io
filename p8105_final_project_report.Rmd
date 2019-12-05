@@ -292,10 +292,6 @@ $~$
 
 $~$
 
-# Findings
-
-$~$
-
 # Additional Analysis 
 
 ```{r, message = FALSE, warning = FALSE}
