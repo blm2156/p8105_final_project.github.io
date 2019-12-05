@@ -547,13 +547,14 @@ plot_3</code></pre>
 <p>Based on this box and whisker plot, plotting borough dog’s age in years, we can see that overall, the median age for dogs is about 6 years. The Bronx, Brooklyen, and Queens have similar distributions which are right skewed while Manhattan has a smaller range of values. Staten Island has the oldest dogs ranging above 10 years with no outliers shown.</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="top-breed-of-dogs-by-borough" class="section level3">
-<h3>Top Breed of Dogs by Borough</h3>
+<div id="top-breed-of-dogs-by-age" class="section level3">
+<h3>Top Breed of Dogs by Age</h3>
 <pre class="r"><code>table2 = distinct_dogz %&gt;% 
   group_by(dog_age) %&gt;% 
   count(breed_name) %&gt;% 
-  top_n(5)
-knitr::kable(table2)</code></pre>
+  top_n(3)</code></pre>
+<pre><code>## Selecting by n</code></pre>
+<pre class="r"><code>knitr::kable(table2)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -570,18 +571,8 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">Maltese</td>
-<td align="right">224</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
 <td align="left">Shih Tzu</td>
 <td align="right">400</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">Shih Tzu Crossbreed</td>
-<td align="right">188</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -592,16 +583,6 @@ knitr::kable(table2)</code></pre>
 <td align="right">2</td>
 <td align="left">American Pit Bull Mix / Pit Bull Mix</td>
 <td align="right">448</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">343</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">Labrador Retriever Crossbreed</td>
-<td align="right">414</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
@@ -620,16 +601,6 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="left">Chihuahua</td>
-<td align="right">392</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">Labrador Retriever Crossbreed</td>
-<td align="right">390</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
 <td align="left">Shih Tzu</td>
 <td align="right">579</td>
 </tr>
@@ -642,16 +613,6 @@ knitr::kable(table2)</code></pre>
 <td align="right">4</td>
 <td align="left">American Pit Bull Mix / Pit Bull Mix</td>
 <td align="right">896</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="left">Chihuahua</td>
-<td align="right">453</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">419</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
@@ -675,18 +636,8 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">431</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
 <td align="left">Shih Tzu</td>
 <td align="right">507</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="left">Yorkshire Terrier</td>
-<td align="right">505</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -697,16 +648,6 @@ knitr::kable(table2)</code></pre>
 <td align="right">6</td>
 <td align="left">Chihuahua</td>
 <td align="right">542</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">338</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="left">Shih Tzu</td>
-<td align="right">479</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -725,33 +666,13 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">299</td>
-</tr>
-<tr class="even">
-<td align="right">7</td>
 <td align="left">Shih Tzu</td>
 <td align="right">471</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="left">Yorkshire Terrier</td>
-<td align="right">425</td>
 </tr>
 <tr class="even">
 <td align="right">8</td>
 <td align="left">American Pit Bull Mix / Pit Bull Mix</td>
 <td align="right">526</td>
-</tr>
-<tr class="odd">
-<td align="right">8</td>
-<td align="left">Chihuahua</td>
-<td align="right">394</td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">Maltese</td>
-<td align="right">268</td>
 </tr>
 <tr class="odd">
 <td align="right">8</td>
@@ -770,16 +691,6 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">9</td>
-<td align="left">Chihuahua</td>
-<td align="right">416</td>
-</tr>
-<tr class="odd">
-<td align="right">9</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">268</td>
-</tr>
-<tr class="even">
-<td align="right">9</td>
 <td align="left">Shih Tzu</td>
 <td align="right">431</td>
 </tr>
@@ -790,18 +701,8 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">10</td>
-<td align="left">American Pit Bull Mix / Pit Bull Mix</td>
-<td align="right">355</td>
-</tr>
-<tr class="odd">
-<td align="right">10</td>
 <td align="left">Chihuahua</td>
 <td align="right">383</td>
-</tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="left">Maltese</td>
-<td align="right">255</td>
 </tr>
 <tr class="odd">
 <td align="right">10</td>
@@ -815,18 +716,8 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">11</td>
-<td align="left">American Pit Bull Mix / Pit Bull Mix</td>
-<td align="right">258</td>
-</tr>
-<tr class="even">
-<td align="right">11</td>
 <td align="left">Chihuahua</td>
 <td align="right">368</td>
-</tr>
-<tr class="odd">
-<td align="right">11</td>
-<td align="left">Maltese</td>
-<td align="right">246</td>
 </tr>
 <tr class="even">
 <td align="right">11</td>
@@ -840,18 +731,8 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">12</td>
-<td align="left">American Pit Bull Mix / Pit Bull Mix</td>
-<td align="right">219</td>
-</tr>
-<tr class="odd">
-<td align="right">12</td>
 <td align="left">Chihuahua</td>
 <td align="right">333</td>
-</tr>
-<tr class="even">
-<td align="right">12</td>
-<td align="left">Maltese</td>
-<td align="right">218</td>
 </tr>
 <tr class="odd">
 <td align="right">12</td>
@@ -870,16 +751,6 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">13</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">186</td>
-</tr>
-<tr class="odd">
-<td align="right">13</td>
-<td align="left">Maltese</td>
-<td align="right">189</td>
-</tr>
-<tr class="even">
-<td align="right">13</td>
 <td align="left">Shih Tzu</td>
 <td align="right">310</td>
 </tr>
@@ -892,16 +763,6 @@ knitr::kable(table2)</code></pre>
 <td align="right">14</td>
 <td align="left">Chihuahua</td>
 <td align="right">238</td>
-</tr>
-<tr class="odd">
-<td align="right">14</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">178</td>
-</tr>
-<tr class="even">
-<td align="right">14</td>
-<td align="left">Maltese</td>
-<td align="right">170</td>
 </tr>
 <tr class="odd">
 <td align="right">14</td>
@@ -920,16 +781,6 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">15</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">141</td>
-</tr>
-<tr class="odd">
-<td align="right">15</td>
-<td align="left">Maltese</td>
-<td align="right">132</td>
-</tr>
-<tr class="even">
-<td align="right">15</td>
 <td align="left">Shih Tzu</td>
 <td align="right">188</td>
 </tr>
@@ -942,16 +793,6 @@ knitr::kable(table2)</code></pre>
 <td align="right">16</td>
 <td align="left">Chihuahua</td>
 <td align="right">147</td>
-</tr>
-<tr class="odd">
-<td align="right">16</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">115</td>
-</tr>
-<tr class="even">
-<td align="right">16</td>
-<td align="left">Maltese</td>
-<td align="right">121</td>
 </tr>
 <tr class="odd">
 <td align="right">16</td>
@@ -970,16 +811,6 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">17</td>
-<td align="left">Maltese</td>
-<td align="right">81</td>
-</tr>
-<tr class="odd">
-<td align="right">17</td>
-<td align="left">Pug</td>
-<td align="right">65</td>
-</tr>
-<tr class="even">
-<td align="right">17</td>
 <td align="left">Shih Tzu</td>
 <td align="right">141</td>
 </tr>
@@ -995,16 +826,6 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">18</td>
-<td align="left">Labrador Retriever</td>
-<td align="right">52</td>
-</tr>
-<tr class="even">
-<td align="right">18</td>
-<td align="left">Maltese</td>
-<td align="right">63</td>
-</tr>
-<tr class="odd">
-<td align="right">18</td>
 <td align="left">Shih Tzu</td>
 <td align="right">90</td>
 </tr>
@@ -1017,16 +838,6 @@ knitr::kable(table2)</code></pre>
 <td align="right">19</td>
 <td align="left">Chihuahua</td>
 <td align="right">52</td>
-</tr>
-<tr class="even">
-<td align="right">19</td>
-<td align="left">Jack Russell Terrier</td>
-<td align="right">40</td>
-</tr>
-<tr class="odd">
-<td align="right">19</td>
-<td align="left">Maltese</td>
-<td align="right">42</td>
 </tr>
 <tr class="even">
 <td align="right">19</td>
@@ -1050,38 +861,18 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="even">
 <td align="right">20</td>
-<td align="left">Maltese</td>
-<td align="right">22</td>
-</tr>
-<tr class="odd">
-<td align="right">20</td>
 <td align="left">Shih Tzu</td>
 <td align="right">23</td>
 </tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="left">Yorkshire Terrier</td>
-<td align="right">21</td>
-</tr>
 <tr class="odd">
-<td align="right">21</td>
-<td align="left">Dachshund Smooth Coat</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
 <td align="right">21</td>
 <td align="left">Jack Russell Terrier</td>
 <td align="right">10</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">21</td>
 <td align="left">Maltese</td>
 <td align="right">9</td>
-</tr>
-<tr class="even">
-<td align="right">21</td>
-<td align="left">Poodle, Standard</td>
-<td align="right">6</td>
 </tr>
 <tr class="odd">
 <td align="right">21</td>
@@ -1089,24 +880,14 @@ knitr::kable(table2)</code></pre>
 <td align="right">12</td>
 </tr>
 <tr class="even">
-<td align="right">21</td>
-<td align="left">Yorkshire Terrier</td>
-<td align="right">8</td>
-</tr>
-<tr class="odd">
 <td align="right">22</td>
 <td align="left">Bichon Frise</td>
 <td align="right">7</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">22</td>
 <td align="left">Chihuahua</td>
 <td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="right">22</td>
-<td align="left">Jack Russell Terrier</td>
-<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="right">22</td>
@@ -1115,26 +896,14 @@ knitr::kable(table2)</code></pre>
 </tr>
 <tr class="odd">
 <td align="right">22</td>
-<td align="left">Poodle, Standard</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">22</td>
 <td align="left">Poodle, Toy</td>
 <td align="right">5</td>
 </tr>
-<tr class="odd">
-<td align="right">22</td>
-<td align="left">Shih Tzu</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">22</td>
-<td align="left">Yorkshire Terrier</td>
-<td align="right">3</td>
-</tr>
 </tbody>
 </table>
+</div>
+<div id="top-breed-of-dogs-by-borough" class="section level3">
+<h3>Top Breed of Dogs by Borough</h3>
 <pre class="r"><code>plot_4=
 distinct_dogz %&gt;% 
   group_by(borough) %&gt;% 
@@ -1150,7 +919,7 @@ distinct_dogz %&gt;%
     y = &quot;Total Count&quot;
   )
 plot_4</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Labrador Retriever, Labrador Retriever Crossbreed, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua’s, and Yorkshire Terriers have the highest observed frequency. <span class="math inline">\(~\)</span></p>
 </div>
 <div id="number-of-licenses-over-time-license-issue-date-vs.number-of-licenses" class="section level3">
@@ -1166,7 +935,7 @@ plot_4</code></pre>
       x = &quot;License issue date&quot;, 
       y = &quot;Number of licenses&quot;)
 plot_5.5</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="number-of-licenses-issued-per-month-liscence-issue-date-vs.number-of-liscences" class="section level3">
@@ -1184,7 +953,7 @@ plot_5.5</code></pre>
       x = &quot;License issue date&quot;, 
       y = &quot;Number of licenses&quot;)
 plot_5.51</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="most-popular-dog-name" class="section level3">
@@ -1267,7 +1036,7 @@ distinct_dogz %&gt;%
     x = &quot;Birth year&quot;, 
     y = &quot;Number of dogs&quot;)
 plot_6</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="map" class="section level3">
@@ -1357,7 +1126,7 @@ fit %&gt;%
 distinct_dogz_reg %&gt;% 
   modelr::add_residuals(fit) %&gt;% 
   ggplot(aes(x = borough, y = resid)) + geom_violin(fill = &quot;pink&quot;)</code></pre>
-<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="discussion" class="section level1">

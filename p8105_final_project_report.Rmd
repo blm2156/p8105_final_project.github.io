@@ -180,16 +180,18 @@ Based on this box and whisker plot, plotting borough dog’s age in years, we ca
 
 $~$
 
-### Top Breed of Dogs by Borough 
+### Top Breed of Dogs by Age 
 
-```{r, message = FALSE}
-
+```{r}
 table2 = distinct_dogz %>% 
   group_by(dog_age) %>% 
   count(breed_name) %>% 
-  top_n(5)
+  top_n(3)
 knitr::kable(table2)
+```
 
+### Top Breed of Dogs by Borough 
+```{r, message = FALSE}
 plot_4=
 distinct_dogz %>% 
   group_by(borough) %>% 
