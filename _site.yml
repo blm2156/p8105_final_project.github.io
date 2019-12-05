@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "Final Project"
+    - text: "Final Project Report"
       href: p8105_final_project_report.html
     - text: "Adopt a Dog in NYC"
       href: https://rescuedogsrocknyc.org/
