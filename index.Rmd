@@ -25,6 +25,12 @@ $~$
 
 # Findings
 
+1. Manhattan had the highest population of dogs, however the age of the dogs' was pretty evenly distributed across the boroughs.
+2. There were more male than female dogs across all five boroughs.
+3. A pattern was noted in the times where dog licesnes are issued: the warmer spring and summer months and in December seem to be the peak times.
+4. Max, Charlie and Bella, were the most popular dog names among the licensed dogs, and are continually growing in popularity.
+5. There is not much variance across the predicted ages of the dogs by borough, adjusting for gender of the dog.
+
 $~$ 
 
 # Website Overview
