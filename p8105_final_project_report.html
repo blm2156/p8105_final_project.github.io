@@ -410,10 +410,6 @@ library(leaflet)</code></pre>
 <h1>Motivation</h1>
 <p>The motivation of this project was to compare dog based data across the various boroughs of NYC to deepen our understanding of the current patterns and trends among canines in NYC. We were able to do this by using the NYC DOMHM Dog Licensing Dataset from 2017 - 2019 to accomplish this goal.</p>
 <p><span class="math inline">\(~\)</span></p>
-<div id="goals-of-our-project" class="section level2">
-<h2>Goals of our project</h2>
-<p><span class="math inline">\(~\)</span></p>
-</div>
 </div>
 <div id="related-work" class="section level1">
 <h1>Related Work</h1>
@@ -615,7 +611,7 @@ plot_5.5</code></pre>
          license_issued_date = factor(license_issued_date, c(&quot;Jan&quot;,&quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;,&quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;,&quot;Nov&quot;, &quot;Dec&quot;), ordered = TRUE)) %&gt;%
   group_by(license_issued_date) %&gt;% 
   summarize(n_obs = n()) %&gt;% 
-      ggplot(aes(x = license_issued_date, y = n_obs)) + 
+      ggplot(aes(x = license_issued_date, y = n_obs, color = n_obs)) + 
       geom_point() + geom_line(group=1) +
       labs(title = &quot;Number of licenses issued per month&quot;, 
       x = &quot;License issue date&quot;, 

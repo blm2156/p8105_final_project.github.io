@@ -26,13 +26,6 @@ The motivation of this project was to compare dog based data across the various 
 
 $~$
 
-## Goals of our project
-
-
-
-
-$~$
-
 # Related Work
 
 We were inspired to work on this project given our collective love for dogs. We were further intrigued to understand the current distribution and trends of dogs within NYC. Drawing inspiration from the NYC Air BnB dataset modeled in class, we realized we could perform similar analysis with this database to better understand what the current licensed dog landscape looks like. We thought that this website would be a knowledge base for any individual who would like to learn more about the current landscape of dogs in NYC.  
@@ -244,7 +237,7 @@ plot_5.51=
          license_issued_date = factor(license_issued_date, c("Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct","Nov", "Dec"), ordered = TRUE)) %>%
   group_by(license_issued_date) %>% 
   summarize(n_obs = n()) %>% 
-      ggplot(aes(x = license_issued_date, y = n_obs)) + 
+      ggplot(aes(x = license_issued_date, y = n_obs, color = n_obs)) + 
       geom_point() + geom_line(group=1) +
       labs(title = "Number of licenses issued per month", 
       x = "License issue date", 
