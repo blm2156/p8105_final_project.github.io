@@ -7,6 +7,12 @@ output:
     theme: journal
 ---
 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+devtools::install_github("ijlyttle/vembedr")
+library("vembedr")
+```
+
+
 ![](home_dogs.JPG)
 
 $~$ 
@@ -44,9 +50,14 @@ $~$
 
 # Screencast
 
-For a brief overview of our website, view our screencast [here](https://www.youtube.com/watch?v=2eiD24iz2wI&feature=youtu.be)
+For a brief overview of our website, view our screencast 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=2eiD24iz2wI&feature=youtu.be" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```{r, echo = FALSE}
+embed_url("https://www.youtube.com/watch?v=2eiD24iz2wI&feature=youtu.be")
+```
+
+
+
 
 
 $~$
