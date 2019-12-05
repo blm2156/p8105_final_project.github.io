@@ -17,6 +17,9 @@ library(lubridate)
 library(viridis)
 library(leaflet)
 lat_long = read.csv("./data/lat-long.csv")
+
+devtools::install_github("ijlyttle/vembedr")
+library("vembedr")
 ```
 
 $~$
