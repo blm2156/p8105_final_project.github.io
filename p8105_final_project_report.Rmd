@@ -212,6 +212,7 @@ plot_4
 ```
 
 Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua's, and Yorkshire Terriers have the highest observed frequency. 
+
 $~$
 
 ### Number of licenses over time (license issue date vs. number of licenses) 
