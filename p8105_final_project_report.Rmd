@@ -156,6 +156,8 @@ distinct_dogz =
   janitor::clean_names()
 ```
 
+$~$
+
 ### Gender of dogs by borough
 
 ```{r, warning = FALSE}
@@ -175,6 +177,8 @@ plot_2
 
 Based on this bar graph plotting borough by frequency of dogs, we can see that overall, Manhattan has the most dogs (over 20,000 dogs for each gender) followed by Brooklyn, Queens, The Bronx, and Staten Island (with about 5,000 dogs for each gender). Additionally, among all boroughs there are more male dogs than there are female dogs. 
 
+$~$
+
 ### Age Distribution of Dogs by Boroughs 
 
 ```{r}
@@ -192,6 +196,8 @@ plot_3
 ```
 
 Based on this box and whisker plot, plotting borough dog’s age in years, we can see that overall, the median age for dogs is about 6 years. The Bronx, Brooklyen, and Queens have similar distributions which are right skewed while Manhattan has a smaller range of values. Staten Island has the oldest dogs ranging above 10 years with no outliers shown. 
+
+$~$
 
 ### Top Breed of dogs by Borough 
 
@@ -220,6 +226,7 @@ plot_4
 ```
 
 Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Labrador Retriever, Labrador Retriever Crossbreed, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua's, and Yorkshire Terriers have the highest observed frequency. 
+$~$
 
 ### Number of licenses over time (license issue date vs. number of licenses) 
 
@@ -237,6 +244,7 @@ plot_5.5=
 plot_5.5
 ```
 
+$~$
 
 ### Number of licenses issued per month (liscence issue date vs. number of liscences) 
 
@@ -256,6 +264,7 @@ plot_5.51=
 plot_5.51
 ```
 
+$~$
 
 ### Most popular dog name by birth year 
 
@@ -287,6 +296,8 @@ distinct_dogz %>%
 plot_6
 
 ```
+
+$~$
 
 ### Map
 

@@ -504,6 +504,7 @@ distinct_dogz =
   left_join(dogz_1, lat_lon, by = &quot;zip_code&quot;) %&gt;% 
   select(-City,-State,-Timezone,-Daylight.savings.time.flag,-geopoint) %&gt;% 
   janitor::clean_names()</code></pre>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="gender-of-dogs-by-borough" class="section level3">
 <h3>Gender of dogs by borough</h3>
@@ -521,6 +522,7 @@ distinct_dogz =
 plot_2</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Based on this bar graph plotting borough by frequency of dogs, we can see that overall, Manhattan has the most dogs (over 20,000 dogs for each gender) followed by Brooklyn, Queens, The Bronx, and Staten Island (with about 5,000 dogs for each gender). Additionally, among all boroughs there are more male dogs than there are female dogs.</p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="age-distribution-of-dogs-by-boroughs" class="section level3">
 <h3>Age Distribution of Dogs by Boroughs</h3>
@@ -537,6 +539,7 @@ plot_2</code></pre>
 plot_3</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Based on this box and whisker plot, plotting borough dog’s age in years, we can see that overall, the median age for dogs is about 6 years. The Bronx, Brooklyen, and Queens have similar distributions which are right skewed while Manhattan has a smaller range of values. Staten Island has the oldest dogs ranging above 10 years with no outliers shown.</p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="top-breed-of-dogs-by-borough" class="section level3">
 <h3>Top Breed of dogs by Borough</h3>
@@ -575,7 +578,7 @@ distinct_dogz %&gt;%
   )
 plot_4</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Labrador Retriever, Labrador Retriever Crossbreed, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua’s, and Yorkshire Terriers have the highest observed frequency.</p>
+<p>Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Labrador Retriever, Labrador Retriever Crossbreed, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua’s, and Yorkshire Terriers have the highest observed frequency. <span class="math inline">\(~\)</span></p>
 </div>
 <div id="number-of-licenses-over-time-license-issue-date-vs.number-of-licenses" class="section level3">
 <h3>Number of licenses over time (license issue date vs. number of licenses)</h3>
@@ -591,6 +594,7 @@ plot_4</code></pre>
       y = &quot;Number of licenses&quot;)
 plot_5.5</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="number-of-licenses-issued-per-month-liscence-issue-date-vs.number-of-liscences" class="section level3">
 <h3>Number of licenses issued per month (liscence issue date vs. number of liscences)</h3>
@@ -608,6 +612,7 @@ plot_5.5</code></pre>
       y = &quot;Number of licenses&quot;)
 plot_5.51</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="most-popular-dog-name-by-birth-year" class="section level3">
 <h3>Most popular dog name by birth year</h3>
@@ -686,6 +691,7 @@ distinct_dogz %&gt;%
     y = &quot;Number of dogs&quot;)
 plot_6</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="map" class="section level3">
 <h3>Map</h3>
