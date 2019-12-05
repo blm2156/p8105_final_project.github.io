@@ -307,7 +307,7 @@ $~$
 
 ### Map
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 pal = colorNumeric(
   palette = "viridis",
   domain = distinct_dogz$zip_code)
