@@ -72,6 +72,12 @@ $~$
 
 ### Loading and Cleaning Data
 
+The dataset was cleaned and adjusted for this analysis. All dogs whose breed were listed as "unknown" were removed, as well as any dogs who were listed as over 20 years old at the time of their license. Originally there were no boroughs listed in this dataset, so we used the available zip codes to assign boroughs to each record. Records whose zip code did not correlate to a borough were dropped. A variable `license_length` was added to calculate the length in years of each license. There were slight differences in the way breed names were recorded, these were adjusted to be uniform.
+
+Variables were changed to appropriate data type where necessary.
+
+The main database included the same dog multiple times if she had more than one license. We created a subset to catalog only the distinct dogs present in our dataset. To identify individual dogs we matched records on animal name, gender, birth year, and breed name. We also added latitude and longitude data that corresponds to zip code for mapping purposes.
+
 
 $~$
 
@@ -167,6 +173,7 @@ plot_2=
 plot_2
 ```
 
+Based on this bar graph plotting borough by frequency of dogs, we can see that overall, Manhattan has the most dogs (over 20,000 dogs for each gender) followed by Brooklyn, Queens, The Bronx, and Staten Island (with about 5,000 dogs for each gender). Additionally, among all boroughs there are more male dogs than there are female dogs. 
 
 ### Age Distribution of Dogs by Boroughs 
 
@@ -183,6 +190,8 @@ plot_3=
   )
 plot_3
 ```
+
+Based on this box and whisker plot, plotting borough dog’s age in years, we can see that overall, the median age for dogs is about 6 years. The Bronx, Brooklyen, and Queens have similar distributions which are right skewed while Manhattan has a smaller range of values. Staten Island has the oldest dogs ranging above 10 years with no outliers shown. 
 
 ### Top Breed of dogs by Borough 
 
@@ -210,6 +219,7 @@ distinct_dogz %>%
 plot_4
 ```
 
+Based on this plot, plotting dog breed by the total count, the most common dog breeds are American Pit Bull Mix/Pit Bull Mix, Chihuahua, Labrador Retriever, Labrador Retriever Crossbreed, Maltese, Shih Tzu, and Yorkshire Terrier. American Pit Bull Mix/Pit Bull Mix has the highest observed frequency in Brooklyn (n =2000) while the lowest in Staten Island (n = 600). Additionally, in Manhattan, Chihuahua's, and Yorkshire Terriers have the highest observed frequency. 
 
 ### Number of licenses over time (license issue date vs. number of licenses) 
 
@@ -311,6 +321,8 @@ fit %>%
   select(term, estimate, p.value) %>% 
   knitr::kable(digits = 3)
 ```
+
+In our  linear model we predict our outcome of dog’s age given our main exposure of borough, adjusting for dog’s gender. Our beta values show that there is not much variance among dog age across different boroughs for both male and female dogs.  Additionally, as seen in our residuals plot, our data does not likely contain outliers and appears to be normally distributed.  One limitation to our model is the exclusion of  breeds type as a variable in our model.  There is a theory that small dogs tend to live longers lives, thus in an ideal model we would have controlled for dog breed by categorizing breed size as small, medium, large breed.  Unfortunately, the large number of breed types included in our dataset impeded our ability to categorizing each breed, and without categorizing this variable our degrees of freedom would be far too high for our model to be parsimonious.  For these reasons we chose to exclude this variable from our model. 
 
 ```{r}
 #graph residuals for each borough
