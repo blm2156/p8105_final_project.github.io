@@ -448,9 +448,6 @@ library(leaflet)</code></pre>
 <p><span class="math inline">\(~\)</span></p>
 <div id="loading-and-cleaning-data" class="section level3">
 <h3>Loading and Cleaning Data</h3>
-<p>The dataset was cleaned and adjusted for this analysis. All dogs whose breed were listed as “unknown” were removed, as well as any dogs who were listed as over 20 years old at the time of their license. Originally there were no boroughs listed in this dataset, so we used the available zip codes to assign boroughs to each record. Records whose zip code did not correlate to a borough were dropped. A variable <code>license_length</code> was added to calculate the length in years of each license. There were slight differences in the way breed names were recorded, these were adjusted to be uniform.</p>
-<p>Variables were changed to appropriate data type where necessary.</p>
-<p>The main database included the same dog multiple times if she had more than one license. We created a subset to catalog only the distinct dogs present in our dataset. To identify individual dogs we matched records on animal name, gender, birth year, and breed name. We also added latitude and longitude data that corresponds to zip code for mapping purposes.</p>
 <pre class="r"><code>lat_lon = read.csv(&quot;./data/lat-long.csv&quot;)
 
 dogz = read.csv(&quot;./data/NYC_Dog_Licensing_Dataset.csv&quot;) %&gt;% 
@@ -510,6 +507,9 @@ distinct_dogz =
   left_join(dogz_1, lat_lon, by = &quot;zip_code&quot;) %&gt;% 
   select(-City,-State,-Timezone,-Daylight.savings.time.flag,-geopoint) %&gt;% 
   janitor::clean_names()</code></pre>
+<p>The dataset was cleaned and adjusted for this analysis. All dogs whose breed were listed as “unknown” were removed, as well as any dogs who were listed as over 20 years old at the time of their license. Originally there were no boroughs listed in this dataset, so we used the available zip codes to assign boroughs to each record. Records whose zip code did not correlate to a borough were dropped. A variable <code>license_length</code> was added to calculate the length in years of each license. There were slight differences in the way breed names were recorded, these were adjusted to be uniform.</p>
+<p>Variables were changed to appropriate data type where necessary.</p>
+<p>The main database included the same dog multiple times if she had more than one license. We created a subset to catalog only the distinct dogs present in our dataset. To identify individual dogs we matched records on animal name, gender, birth year, and breed name. We also added latitude and longitude data that corresponds to zip code for mapping purposes.</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="gender-of-dogs-by-borough" class="section level3">
@@ -1116,12 +1116,15 @@ fit %&gt;%
 </tr>
 </tbody>
 </table>
-<p>In our linear regression model we predict our outcome of dog’s age given our main exposure of borough, adjusting for dog’s gender. Our beta values show that there is not much variance among dog age across different boroughs for both male and female dogs. Additionally, as seen in our residuals plot, our data does not likely contain outliers and appears to be normally distributed. One limitation to our model is the exclusion of breeds type as a variable in our model. There is a theory that small dogs tend to live longers lives, thus in an ideal model we would have controlled for dog breed by categorizing breed size as small, medium, large breed. Unfortunately, the large number of breed types included in our dataset impeded our ability to categorizing each breed, and without categorizing this variable our degrees of freedom would be far too high for our model to be parsimonious. For these reasons we chose to exclude this variable from our model.</p>
 <pre class="r"><code>#graph residuals for each borough
 distinct_dogz_reg %&gt;% 
   modelr::add_residuals(fit) %&gt;% 
-  ggplot(aes(x = borough, y = resid)) + geom_violin(fill = &quot;pink&quot;)</code></pre>
+  ggplot(aes(x = borough, y = resid)) + geom_violin(fill = &quot;pink&quot;) +
+  labs(title = &quot;Graph of Residuals for each Borough&quot;, 
+    x = &quot;Borough&quot;, 
+    y = &quot;Residuals&quot;)</code></pre>
 <p><img src="p8105_final_project_report_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>In our linear regression model we predict our outcome of dog’s age given our main exposure of borough, adjusting for dog’s gender. Our beta values show that there is not much variance among dog age across different boroughs for both male and female dogs. Additionally, as seen in our residuals plot, our data does not likely contain outliers and appears to be normally distributed. One limitation to our model is the exclusion of breeds type as a variable in our model. There is a theory that small dogs tend to live longers lives, thus in an ideal model we would have controlled for dog breed by categorizing breed size as small, medium, large breed. Unfortunately, the large number of breed types included in our dataset impeded our ability to categorizing each breed, and without categorizing this variable our degrees of freedom would be far too high for our model to be parsimonious. For these reasons we chose to exclude this variable from our model.</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="discussion" class="section level1">
