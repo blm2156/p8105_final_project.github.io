@@ -190,6 +190,8 @@ table2 = distinct_dogz %>%
 knitr::kable(table2)
 ```
 
+In this table, we see the top 3 dog breeds for each age, dog ages 1 - 22. We can see that there are more larger dog breeds appearing as the top breed in some of the younger age categories. After 9 years, all of the top 3 dog breeds for each age consist of small dog breeds. This is consistent with literature findings that smaller dog breeds tend to live longer lives than larger dog breeds. In addition, we find that several dog breeds outshine others in being the top dog breed for many of the age categories including Chihuanhua, Yorkshire Terrier, and American Pit Bull Mix / Pit Bull Mix.
+
 ### Top Breed of Dogs by Borough 
 ```{r, message = FALSE}
 plot_4=
@@ -247,6 +249,8 @@ plot_5.51=
       y = "Number of licenses")
 plot_5.51
 ```
+
+Based on this line graph, there is an increasing trend present in regards to the number of licenses issued per month. From January - March there is a steep increase which increases more gradually between March through June. There is a spike from June to July and a plateau from July to August. From August, there is a steady decrease until November where we then see an increase in December. There could be a variety of factors to explain this phenomenon, but one might be that in the warmer months individuals are more likely to want to adopt/buy a dog where it is easier to upkeep a dog as opposed to the colder months across NYC. 
 
 $~$
 
