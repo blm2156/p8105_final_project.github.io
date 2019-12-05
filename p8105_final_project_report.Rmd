@@ -182,7 +182,7 @@ $~$
 
 ### Top Breed of Dogs by Age 
 
-```{r}
+```{r, message = FALSE}
 table2 = distinct_dogz %>% 
   group_by(dog_age) %>% 
   count(breed_name) %>% 

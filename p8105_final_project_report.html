@@ -552,9 +552,8 @@ plot_3</code></pre>
 <pre class="r"><code>table2 = distinct_dogz %&gt;% 
   group_by(dog_age) %&gt;% 
   count(breed_name) %&gt;% 
-  top_n(3)</code></pre>
-<pre><code>## Selecting by n</code></pre>
-<pre class="r"><code>knitr::kable(table2)</code></pre>
+  top_n(3)
+knitr::kable(table2)</code></pre>
 <table>
 <thead>
 <tr class="header">
